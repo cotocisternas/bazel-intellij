@@ -54,7 +54,7 @@ public class ProjectViewPsiParser {
       return;
     }
     if (currentToken() == ProjectViewTokenType.SCALAR_KEYWORD) {
-      ScalarSectionParser parser =
+      ScalarSectionParser<?> parser =
           ProjectViewKeywords.SCALAR_KEYWORD_MAP.get(builder.getTokenText());
       if (parser != null) {
         parseScalarSection(parser);
@@ -90,7 +90,7 @@ public class ProjectViewPsiParser {
     }
   }
 
-  private void parseScalarSection(ScalarSectionParser parser) {
+  private void parseScalarSection(ScalarSectionParser<?> parser) {
     boolean whitespaceDivider = builder.rawLookup(1) == ProjectViewTokenType.WHITESPACE;
     builder.advanceLexer();
 
